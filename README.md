@@ -1,36 +1,35 @@
-# Stage310 REMEDA Trust Score Visualization
+# Stage310 REMEDA Trust Score URL + External Verification API
 
-Stage310 introduces a Trust Score visualization layer for REMEDA.
-
-This stage transforms verification results into a human-readable trust decision.
+Stage310 transforms verification results into a **visual and shareable Trust Score system**.
 
 ---
 
 ## Core Concept
 
-Before:
+Before Stage310:
 
-verification result → JSON only
+verification result → JSON
 
-After:
+After Stage310:
 
-verification result → Trust Score → Visual Decision Dashboard
+verification result → Trust Score → Public URL → API
 
 ---
 
-## What This Stage Adds
+## What Stage310 Adds
 
 - Trust Score visualization (0.0 - 1.0)
-- accept / pending / reject decision UI
-- Trust Breakdown:
+- accept / pending / reject decision
+- Public Trust URL (/trust/<id>)
+- External API (/api/verify, /api/trust/<id>)
+- Trust breakdown:
   - Integrity
   - Execution
   - Identity
   - Time
-  - Sigstore
-- Evidence JSON display
-- Verification history
-- API endpoint (/api/verify)
+  - Sigstore (current: declared)
+- Evidence JSON
+- Fail-closed policy
 
 ---
 
@@ -58,12 +57,12 @@ Fail-closed is enabled.
 
 ## Why This Matters
 
-Trust must be visible.
-
 Stage310 converts verification into something that:
-- users can understand
+
+- users can understand instantly
 - engineers can validate
-- businesses can sell
+- systems can consume via API
+- businesses can share via URL
 
 ---
 
@@ -72,13 +71,13 @@ Stage310 converts verification into something that:
 pip install -r requirements.txt  
 python app.py  
 
-http://127.0.0.1:3100
+http://127.0.0.1:3110
 
 ---
 
 ## API Example
 
-curl -X POST http://127.0.0.1:3100/api/verify \
+curl -X POST http://127.0.0.1:3110/api/verify \
 -H "Content-Type: application/json" \
 -d '{
   "url": "https://example.com",
@@ -94,6 +93,12 @@ curl -X POST http://127.0.0.1:3100/api/verify \
     }
   }
 }'
+
+---
+
+## Next Stage
+
+Stage311 will introduce **real Sigstore verification**.
 
 ---
 
